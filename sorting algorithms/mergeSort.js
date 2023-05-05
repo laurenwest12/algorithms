@@ -32,7 +32,20 @@ const merge = (arr1, arr2) => {
     merged = merged.concat(arr2.slice(j));
   }
 
+  console.log(merged);
   return merged;
 };
 
-console.log(merge([1, 10, 50, 99], [2, 14, 99, 100]));
+//console.log(merge([1, 10, 50, 99], [2, 14, 99, 100]));
+
+const mergeSort = (arr) => {
+  if (arr.length <= 1) return arr;
+  else {
+    let mid = Math.floor(arr.length / 2);
+    let left = mergeSort(arr.slice(0, mid));
+    let right = mergeSort(arr.slice(mid));
+    return merge(left, right);
+  }
+};
+
+mergeSort([1, 5, 3, 2, 4]);
