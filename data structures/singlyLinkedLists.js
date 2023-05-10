@@ -71,6 +71,17 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+
+  get(num) {
+    if (num < 0 || num > this.length) return null;
+    let i = 0;
+    let current = this.head;
+    while (i !== num) {
+      current = current.next;
+      i++;
+    }
+    return current;
+  }
 }
 
 const list = new SinglyLinkedList();
@@ -92,8 +103,12 @@ const emptyList = new SinglyLinkedList();
 // const shift = list.shift();
 // console.log(shift, list);
 
-const unshift = list.unshift('Howdy');
-console.log(unshift);
+// const unshift = list.unshift('Howdy');
+// console.log(unshift);
 
-const unshiftEmpty = emptyList.unshift('Howdy');
-console.log(unshiftEmpty);
+// const unshiftEmpty = emptyList.unshift('Howdy');
+// console.log(unshiftEmpty);
+
+const getEmpty = emptyList.get(0);
+const getList = list.get(2);
+console.log(getList);
