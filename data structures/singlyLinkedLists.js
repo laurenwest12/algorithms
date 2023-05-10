@@ -82,6 +82,13 @@ class SinglyLinkedList {
     }
     return current;
   }
+
+  set(num, val) {
+    let nodeToUpdate = this.get(num);
+    if (!nodeToUpdate) return false;
+    nodeToUpdate.val = val;
+    return true;
+  }
 }
 
 const list = new SinglyLinkedList();
@@ -109,6 +116,9 @@ const emptyList = new SinglyLinkedList();
 // const unshiftEmpty = emptyList.unshift('Howdy');
 // console.log(unshiftEmpty);
 
-const getEmpty = emptyList.get(0);
-const getList = list.get(2);
-console.log(getList);
+// const getEmpty = emptyList.get(0);
+// const getList = list.get(2);
+// console.log(getList);
+
+const setList = list.set(2, 'Edna');
+console.log(setList, list);
