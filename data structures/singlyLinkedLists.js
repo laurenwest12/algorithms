@@ -92,8 +92,8 @@ class SinglyLinkedList {
 
   insert(i, val) {
     if (i > this.length || i < 0) return false;
-    if (i === 0) return this.unshift(val);
-    if (i === this.length) return this.push(val);
+    if (i === 0) return !!this.unshift(val);
+    if (i === this.length) return !!this.push(val);
 
     let newNode = new Node(val);
     let previous = this.get(i - 1);
@@ -102,6 +102,34 @@ class SinglyLinkedList {
     newNode.next = current;
     this.length++;
     return true;
+  }
+
+  remove(i) {
+    if (i > this.length || i < 0) return null;
+    if (i === 0) return this.shift();
+    if (i === this.length - 1) return this.pop();
+    const previous = this.get(i - 1);
+    const removed = previous.next;
+    const next = removed.next;
+    previous.next = next;
+    this.length--;
+    return removed.val;
+  }
+
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    let next;
+    let prev = null;
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
   }
 }
 
@@ -137,7 +165,17 @@ const emptyList = new SinglyLinkedList();
 // const setList = list.set(2, 'Edna');
 // console.log(setList, list);
 
-const insertList = list.insert(2, 'Edna');
-const test = list.get(2);
-const test2 = list.get(3);
-console.log(test, test2);
+// const insertList = list.insert(2, 'Edna');
+// // const test = list.get(2);
+// // const test2 = list.get(3);
+// // console.log(test, test2);
+
+// const removed = list.remove(2);
+// console.log(removed);
+
+// const reversed = list.reverse();
+// console.log(reversed);
+// console.log(reversed.get(0));
+// console.log(reversed.get(1));
+// console.log(reversed.get(2));
+// console.log(reversed.get(3));
