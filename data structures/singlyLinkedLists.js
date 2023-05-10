@@ -89,6 +89,20 @@ class SinglyLinkedList {
     nodeToUpdate.val = val;
     return true;
   }
+
+  insert(i, val) {
+    if (i > this.length || i < 0) return false;
+    if (i === 0) return this.unshift(val);
+    if (i === this.length) return this.push(val);
+
+    let newNode = new Node(val);
+    let previous = this.get(i - 1);
+    let current = previous.next;
+    previous.next = newNode;
+    newNode.next = current;
+    this.length++;
+    return true;
+  }
 }
 
 const list = new SinglyLinkedList();
@@ -120,5 +134,10 @@ const emptyList = new SinglyLinkedList();
 // const getList = list.get(2);
 // console.log(getList);
 
-const setList = list.set(2, 'Edna');
-console.log(setList, list);
+// const setList = list.set(2, 'Edna');
+// console.log(setList, list);
+
+const insertList = list.insert(2, 'Edna');
+const test = list.get(2);
+const test2 = list.get(3);
+console.log(test, test2);
