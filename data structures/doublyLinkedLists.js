@@ -145,6 +145,22 @@ class DoublyLinkedList {
     this.length--;
     return removedNode;
   }
+
+  reverse() {
+    if (this.length <= 1) return this;
+    let current = this.head;
+    this.head = this.tail;
+    this.tail = current;
+
+    for (let i = this.length; i > 0; --i) {
+      let prev = current.prev;
+      current.prev = current.next;
+      current.next = prev;
+      current = current.prev;
+    }
+
+    return this;
+  }
 }
 
 let list = new DoublyLinkedList();
@@ -178,3 +194,14 @@ list.push('Edna');
 // const rmv = list.remove(1);
 // console.log(rmv);
 // console.log(list);
+
+// list.reverse();
+// const tst = list.get(2);
+// console.log(tst);
+// console.log(list);
+
+let reverseTest = new DoublyLinkedList();
+reverseTest.push('Edna');
+reverseTest.push('Miss Kitty');
+const tst = reverseTest.reverse();
+console.log(tst);
