@@ -78,23 +78,26 @@ class DoublyLinkedList {
 
   get(num) {
     if (num < 0 || num >= this.length) return null;
-    let mid = Math.floor(this.length / 2);
-    if (num < mid) {
-      console.log('beg');
-      let current = this.head;
-      for (let i = 0; i < num; ++i) {
-        current = current.next;
-      }
-      return current;
-    } else {
-      console.log('end');
-      let current = this.tail;
+    let mid = this.length / 2;
 
-      for (let i = this.length - 1; i > num; --i) {
-        current = current.prev;
+    let count;
+    let current;
+    if (num <= mid) {
+      count = 0;
+      current = this.head;
+      while (count < num) {
+        current = current.next;
+        count++;
       }
-      return current;
+    } else {
+      count = this.length - 1;
+      current = this.tail;
+      while (count !== num) {
+        current = current.prev;
+        count--;
+      }
     }
+    return current;
   }
 
   set(val, i) {
@@ -105,11 +108,30 @@ class DoublyLinkedList {
     }
     return false;
   }
+
+  insert(val, i) {
+    if (i > this.length) return false;
+    if (i === 0) return !!this.unshift(val);
+    if (i === this.length) return !!this.push(val);
+
+    let newNode = new Node(val);
+    let prevNode = list.get(i - 1);
+    let nextNode = prevNode.next;
+
+    prevNode.next = newNode;
+    newNode.prev = prevNode;
+
+    nextNode.prev = newNode;
+    newNode.next = nextNode;
+
+    this.length++;
+    return true;
+  }
 }
 
 let list = new DoublyLinkedList();
 list.push('Hello');
-list.push('there');
+list.push('there!');
 list.push('Lauren');
 list.push('and');
 list.push('Edna');
@@ -131,5 +153,6 @@ list.push('Edna');
 // const num = list.get(4);
 // console.log(num);
 
-const res = list.set('Miss Kitty', 5);
-console.log(res);
+list.insert('Welcome', 1);
+const tst = list.get(1);
+console.log(tst);
