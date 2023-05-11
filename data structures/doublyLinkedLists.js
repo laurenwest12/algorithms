@@ -75,13 +75,44 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  get(num) {
+    if (num < 0 || num >= this.length) return null;
+    let mid = Math.floor(this.length / 2);
+    if (num < mid) {
+      console.log('beg');
+      let current = this.head;
+      for (let i = 0; i < num; ++i) {
+        current = current.next;
+      }
+      return current;
+    } else {
+      console.log('end');
+      let current = this.tail;
+
+      for (let i = this.length - 1; i > num; --i) {
+        current = current.prev;
+      }
+      return current;
+    }
+  }
+
+  set(val, i) {
+    let node = this.get(i);
+    if (node) {
+      node.val = val;
+      return true;
+    }
+    return false;
+  }
 }
 
 let list = new DoublyLinkedList();
-// list.push('Hello');
-// list.push('there');
-// list.push('Lauren!');
-
+list.push('Hello');
+list.push('there');
+list.push('Lauren');
+list.push('and');
+list.push('Edna');
 // list.pop();
 // list.pop();
 // list.pop();
@@ -96,3 +127,9 @@ let list = new DoublyLinkedList();
 // list.unshift('there');
 // list.unshift('Hello');
 // console.log(list);
+
+// const num = list.get(4);
+// console.log(num);
+
+const res = list.set('Miss Kitty', 5);
+console.log(res);
