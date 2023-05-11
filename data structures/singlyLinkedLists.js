@@ -117,17 +117,18 @@ class SinglyLinkedList {
   }
 
   reverse() {
-    let node = this.head;
+    let current = this.head;
     this.head = this.tail;
-    this.tail = node;
+    this.tail = current;
 
-    let next;
+    let next = null;
     let prev = null;
-    for (let i = 0; i < this.length; i++) {
-      next = node.next;
-      node.next = prev;
-      prev = node;
-      node = next;
+
+    for (let i = 0; i < this.length; ++i) {
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
     }
     return this;
   }
@@ -173,9 +174,9 @@ const emptyList = new SinglyLinkedList();
 // const removed = list.remove(2);
 // console.log(removed);
 
-// const reversed = list.reverse();
-// console.log(reversed);
-// console.log(reversed.get(0));
-// console.log(reversed.get(1));
-// console.log(reversed.get(2));
-// console.log(reversed.get(3));
+const reversed = list.reverse();
+console.log(reversed);
+console.log(reversed.get(0));
+console.log(reversed.get(1));
+console.log(reversed.get(2));
+console.log(reversed.get(3));
