@@ -30,12 +30,11 @@ class Queue {
     let first = this.first;
     if (this.size === 0) return undefined;
     if (this.first === this.last) {
-      this.first = null;
       this.last = null;
     }
-    this.first = first.next;
-    first.next = null;
-    return first;
+    this.first = this.first.next;
+    this.size--;
+    return first.value;
   }
 }
 
