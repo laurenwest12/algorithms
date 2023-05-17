@@ -112,6 +112,19 @@ class BinarySearchTree {
     traverse(this.root);
     return data;
   }
+
+  depthFirstPostOrder() {
+    let data = [];
+
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      data.push(node.value);
+    }
+
+    traverse(this.root);
+    return data;
+  }
 }
 
 //    10
@@ -127,13 +140,14 @@ tree.insert(20);
 tree.insert(7);
 tree.insert(14);
 
-console.log(tree);
-
 // const search = tree.find(900);
 // console.log(search);
 
 // const data = tree.breadthFirstSearch();
 // console.log(data);
 
-const data = tree.depthFirstPreOrder();
+// const data = tree.depthFirstPreOrder();
+// console.log(data);
+
+const data = tree.depthFirstPostOrder();
 console.log(data);
