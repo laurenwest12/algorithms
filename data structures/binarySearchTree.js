@@ -63,6 +63,26 @@ class BinarySearchTree {
 
     return found;
   }
+
+  breadthFirstSearch() {
+    let node = this.root;
+    let data = [];
+    let queue = [];
+
+    queue.push(node);
+
+    while (queue.length) {
+      node = queue.shift();
+      data.push(node.value);
+      if (node.left) {
+        queue.push(node.left);
+      }
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
+    return data;
+  }
 }
 
 //    10
@@ -80,3 +100,6 @@ tree.insert(8);
 
 const search = tree.find(900);
 console.log(search);
+
+const data = tree.breadthFirstSearch();
+console.log(data);
