@@ -52,7 +52,7 @@ class BinarySearchTree {
 
     while (true) {
       if (current.value === val) {
-        return true;
+        return current;
       }
 
       if (val < current.value) {
@@ -83,5 +83,5 @@ tree.insert(20);
 tree.insert(7);
 tree.insert(8);
 
-const search = tree.find(9);
+const search = tree.find(15);
 console.log(search);
