@@ -29,8 +29,18 @@ class MaxBinaryHeap {
     let leftChild = this.values[leftChildIdx];
     let rightChild = this.values[rightChildIdx];
 
-    let maxChildIdx = leftChild > rightChild ? leftChildIdx : rightChildIdx;
-    let maxChild = leftChild > rightChild ? leftChild : rightChild;
+    let maxChildIdx = null;
+    let maxChild = null;
+
+    if (!leftChild) {
+      return {
+        maxChildIdx,
+        maxChild,
+      };
+    }
+
+    maxChildIdx = leftChild > rightChild ? leftChildIdx : rightChildIdx;
+    maxChild = leftChild > rightChild ? leftChild : rightChild;
 
     if (!rightChild) {
       maxChildIdx = leftChildIdx;
@@ -53,7 +63,7 @@ class MaxBinaryHeap {
     let currentIdx = 0;
     let { maxChildIdx, maxChild } = this.getMaxChild(currentIdx);
 
-    while (lastAdded < maxChild) {
+    while (maxChild && lastAdded < maxChild) {
       this.values[currentIdx] = maxChild;
       this.values[maxChildIdx] = lastAdded;
 
