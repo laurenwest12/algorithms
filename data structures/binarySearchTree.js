@@ -84,22 +84,6 @@ class BinarySearchTree {
     return data;
   }
 
-  // traverse(node) {
-  //   let visited = [];
-
-  //   visited.push(node.value);
-
-  //   if (node.left) {
-  //     visited.concat(this.traverse(node.left));
-  //   }
-
-  //   if (node.right) {
-  //     visited.push(this.traverse(node.right));
-  //   }
-
-  //   return visited.flat();
-  // }
-
   depthFirstPreOrder() {
     let data = [];
 
