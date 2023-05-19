@@ -20,18 +20,32 @@ class Graph {
       (vertex) => vertex !== vertex1
     );
   }
+
+  removeVertex(removedVertex) {
+    const edges = this.adjacencyList[removedVertex];
+
+    for (let i = 0; i < edges.length; ++i) {
+      this.removeEdge(removedVertex, edges[i]);
+    }
+
+    delete this.adjacencyList[removedVertex];
+  }
 }
 
 let graph = new Graph();
-graph.addVertex('Tokyo');
 graph.addVertex('NYC');
 graph.addVertex('Dallas');
 graph.addVertex('Atlanta');
 graph.addVertex('Cleveland');
+graph.addVertex('Chicago');
 
 graph.addEdge('NYC', 'Atlanta');
 graph.addEdge('NYC', 'Cleveland');
-console.log(graph);
+graph.addEdge('Chicago', 'Dallas');
+graph.addEdge('Chicago', 'Atlanta');
 
-graph.removeEdge('NYC', 'Atlanta');
+// graph.removeEdge('NYC', 'Atlanta');
+// console.log(graph);
+
+graph.removeVertex('NYC');
 console.log(graph);
