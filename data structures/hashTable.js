@@ -1,5 +1,5 @@
 class HashTable {
-  constructor(size = 53) {
+  constructor(size = 4) {
     this.keyMap = new Array(size);
   }
 
@@ -22,12 +22,29 @@ class HashTable {
     this.keyMap[hash].push([key, value]);
   }
 
-  get() {}
+  get(key) {
+    const hash = this._hash(key);
+    const hashArray = this.keyMap[hash];
+
+    if (!hashArray) return undefined;
+
+    for (let i = 0; i < hashArray.length; ++i) {
+      let pair = hashArray[i];
+      if (pair[0] === key) return pair[1];
+    }
+
+    return undefined;
+  }
 }
 
 let table = new HashTable();
-table.set('hello world', 'goodbye!!');
-table.set('dogs', 'are fine');
-table.set('cats', 'are cool');
-table.set('i love', 'pizza');
-console.log(table);
+table.set('cyan', '#00FFFF');
+table.set('red', '#FF0000');
+table.set('pink', '#FFC0CB');
+table.set('lavender', '#E6E6FA');
+const k1 = table.get('lavender');
+const k2 = table.get('salmon');
+const k3 = table.get('periwinkle');
+const k4 = table.get('red');
+
+console.log(k1, k2, k3, k4);
