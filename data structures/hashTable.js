@@ -17,11 +17,17 @@ class HashTable {
 
   set(key, value) {
     const hash = this._hash(key);
+    const current = this.keyMap[hash];
+    if (!current) this.keyMap[hash] = [];
+    this.keyMap[hash].push([key, value]);
   }
 
   get() {}
 }
 
 let table = new HashTable();
-table.set('red', '#12345');
-table.set('salmon', '#67890');
+table.set('hello world', 'goodbye!!');
+table.set('dogs', 'are fine');
+table.set('cats', 'are cool');
+table.set('i love', 'pizza');
+console.log(table);
