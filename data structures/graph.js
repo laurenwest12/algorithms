@@ -30,22 +30,68 @@ class Graph {
 
     delete this.adjacencyList[removedVertex];
   }
+
+  depthFirstRecursion(start) {
+    let result = [];
+    let visited = {};
+    const adjacencyList = this.adjacencyList;
+
+    (function dfs(vertex) {
+      if (!vertex) return null;
+      visited[vertex] = true;
+      result.push(vertex);
+      adjacencyList[vertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          dfs(neighbor);
+        }
+      });
+    })(start);
+
+    console.log(result);
+    return result;
+  }
 }
 
 let graph = new Graph();
-graph.addVertex('NYC');
-graph.addVertex('Dallas');
-graph.addVertex('Atlanta');
-graph.addVertex('Cleveland');
-graph.addVertex('Chicago');
+// graph.addVertex('NYC');
+// graph.addVertex('Dallas');
+// graph.addVertex('Atlanta');
+// graph.addVertex('Cleveland');
+// graph.addVertex('Chicago');
 
-graph.addEdge('NYC', 'Atlanta');
-graph.addEdge('NYC', 'Cleveland');
-graph.addEdge('Chicago', 'Dallas');
-graph.addEdge('Chicago', 'Atlanta');
+// graph.addEdge('NYC', 'Atlanta');
+// graph.addEdge('NYC', 'Cleveland');
+// graph.addEdge('NYC', 'Chiago')
+// graph.addEdge('Chicago', 'Dallas');
+// graph.addEdge('Chicago', 'Atlanta');
 
 // graph.removeEdge('NYC', 'Atlanta');
 // console.log(graph);
 
-graph.removeVertex('NYC');
-console.log(graph);
+// graph.removeVertex('NYC');
+// console.log(graph);
+
+//   A
+//  /  \
+// B    C
+// |    |
+// D -- E
+//  \  /
+//    F
+
+graph.addVertex('A');
+graph.addVertex('B');
+graph.addVertex('C');
+graph.addVertex('D');
+graph.addVertex('E');
+graph.addVertex('F');
+
+graph.addEdge('A', 'B');
+graph.addEdge('A', 'C');
+graph.addEdge('B', 'D');
+graph.addEdge('C', 'E');
+graph.addEdge('D', 'E');
+graph.addEdge('D', 'F');
+graph.addEdge('E', 'F');
+
+graph.depthFirstRecursion('A');
