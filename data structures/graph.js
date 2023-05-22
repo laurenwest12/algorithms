@@ -50,6 +50,28 @@ class Graph {
     console.log(result);
     return result;
   }
+
+  depthFirstIterative(start) {
+    const stack = [start];
+    const results = [];
+    const visited = {};
+    visited[start] = true;
+
+    let currentVertex;
+    while (stack.length) {
+      currentVertex = stack.pop();
+      results.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          stack.push(neighbor);
+        }
+      });
+    }
+    console.log(results);
+    return results;
+  }
 }
 
 let graph = new Graph();
@@ -95,3 +117,4 @@ graph.addEdge('D', 'F');
 graph.addEdge('E', 'F');
 
 graph.depthFirstRecursion('A');
+graph.depthFirstIterative('A');
