@@ -47,7 +47,6 @@ class Graph {
       });
     })(start);
 
-    console.log(result);
     return result;
   }
 
@@ -66,6 +65,27 @@ class Graph {
         if (!visited[neighbor]) {
           visited[neighbor] = true;
           stack.push(neighbor);
+        }
+      });
+    }
+    return results;
+  }
+
+  breadthFirst(start) {
+    const q = [start];
+    const results = [];
+    const visited = {};
+    visited[start] = true;
+    let currentVertex;
+
+    while (q.length) {
+      currentVertex = q.shift();
+      results.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          q.push(neighbor);
         }
       });
     }
@@ -118,3 +138,5 @@ graph.addEdge('E', 'F');
 
 graph.depthFirstRecursion('A');
 graph.depthFirstIterative('A');
+
+graph.breadthFirstIterative('A');
