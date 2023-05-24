@@ -6,5 +6,4 @@ const fib = (n, memo = []) => {
   return res;
 };
 
-// 1 + 2 + 3 = 6
 console.log(fib(3));
